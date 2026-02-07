@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit Donation{% endblock %}
+
+{% block content %}
+<h2>✏️ Edit Your Donation</h2>
+<p class="subtitle">Update the information below</p>
+
+<div class="form-container">
+    <form method="POST">
+        <label>Your Name:</label>
+        <input type="text" name="name" value="{{ donation.name }}" required>
+
+        <label>Your Phone (for text messages):</label>
+        <input type="tel" name="phone" value="{{ donation.phone }}" required>
+
+        <div style="display: flex; gap: 15px; margin-top: 20px;">
+            <div style="flex: 2;">
+                <label>City:</label>
+                <input type="text" name="city" value="{{ donation.city }}" required>
+            </div>
+            <div style="flex: 1;">
+                <label>State:</label>
+                <select name="state" required>
+                    <option value="">Select</option>
+                    <option value="AL" {% if donation.state == "AL" %}selected{% endif %}>AL</option>
+                    <option value="AK" {% if donation.state == "AK" %}selected{% endif %}>AK</option>
+                    <option value="AZ" {% if donation.state == "AZ" %}selected{% endif %}>AZ</option>
+                    <option value="AR" {% if donation.state == "AR" %}selected{% endif %}>AR</option>
+                    <option value="CA" {% if donation.state == "CA" %}selected{% endif %}>CA</option>
+                    <option value="CO" {% if donation.state == "CO" %}selected{% endif %}>CO</option>
+                    <option value="CT" {% if donation.state == "CT" %}selected{% endif %}>CT</option>
+                    <option value="DE" {% if donation.state == "DE" %}selected{% endif %}>DE</option>
+                    <option value="FL" {% if donation.state == "FL" %}selected{% endif %}>FL</option>
+                    <option value="GA" {% if donation.state == "GA" %}selected{% endif %}>GA</option>
+                    <option value="HI" {% if donation.state == "HI" %}selected{% endif %}>HI</option>
+                    <option value="ID" {% if donation.state == "ID" %}selected{% endif %}>ID</option>
+                    <option value="IL" {% if donation.state == "IL" %}selected{% endif %}>IL</option>
+                    <option value="IN" {% if donation.state == "IN" %}selected{% endif %}>IN</option>
+                    <option value="IA" {% if donation.state == "IA" %}selected{% endif %}>IA</option>
+                    <option value="KS" {% if donation.state == "KS" %}selected{% endif %}>KS</option>
+                    <option value="KY" {% if donation.state == "KY" %}selected{% endif %}>KY</option>
+                    <option value="LA" {% if donation.state == "LA" %}selected{% endif %}>LA</option>
+                    <option value="ME" {% if donation.state == "ME" %}selected{% endif %}>ME</option>
+                    <option value="MD" {% if donation.state == "MD" %}selected{% endif %}>MD</option>
+                    <option value="MA" {% if donation.state == "MA" %}selected{% endif %}>MA</option>
+                    <option value="MI" {% if donation.state == "MI" %}selected{% endif %}>MI</option>
+                    <option value="MN" {% if donation.state == "MN" %}selected{% endif %}>MN</option>
+                    <option value="MS" {% if donation.state == "MS" %}selected{% endif %}>MS</option>
+                    <option value="MO" {% if donation.state == "MO" %}selected{% endif %}>MO</option>
+                    <option value="MT" {% if donation.state == "MT" %}selected{% endif %}>MT</option>
+                    <option value="NE" {% if donation.state == "NE" %}selected{% endif %}>NE</option>
+                    <option value="NV" {% if donation.state == "NV" %}selected{% endif %}>NV</option>
+                    <option value="NH" {% if donation.state == "NH" %}selected{% endif %}>NH</option>
+                    <option value="NJ" {% if donation.state == "NJ" %}selected{% endif %}>NJ</option>
+                    <option value="NM" {% if donation.state == "NM" %}selected{% endif %}>NM</option>
+                    <option value="NY" {% if donation.state == "NY" %}selected{% endif %}>NY</option>
+                    <option value="NC" {% if donation.state == "NC" %}selected{% endif %}>NC</option>
+                    <option value="ND" {% if donation.state == "ND" %}selected{% endif %}>ND</option>
+                    <option value="OH" {% if donation.state == "OH" %}selected{% endif %}>OH</option>
+                    <option value="OK" {% if donation.state == "OK" %}selected{% endif %}>OK</option>
+                    <option value="OR" {% if donation.state == "OR" %}selected{% endif %}>OR</option>
+                    <option value="PA" {% if donation.state == "PA" %}selected{% endif %}>PA</option>
+                    <option value="RI" {% if donation.state == "RI" %}selected{% endif %}>RI</option>
+                    <option value="SC" {% if donation.state == "SC" %}selected{% endif %}>SC</option>
+                    <option value="SD" {% if donation.state == "SD" %}selected{% endif %}>SD</option>
+                    <option value="TN" {% if donation.state == "TN" %}selected{% endif %}>TN</option>
+                    <option value="TX" {% if donation.state == "TX" %}selected{% endif %}>TX</option>
+                    <option value="UT" {% if donation.state == "UT" %}selected{% endif %}>UT</option>
+                    <option value="VT" {% if donation.state == "VT" %}selected{% endif %}>VT</option>
+                    <option value="VA" {% if donation.state == "VA" %}selected{% endif %}>VA</option>
+                    <option value="WA" {% if donation.state == "WA" %}selected{% endif %}>WA</option>
+                    <option value="WV" {% if donation.state == "WV" %}selected{% endif %}>WV</option>
+                    <option value="WI" {% if donation.state == "WI" %}selected{% endif %}>WI</option>
+                    <option value="WY" {% if donation.state == "WY" %}selected{% endif %}>WY</option>
+                </select>
+            </div>
+        </div>
+
+        <label>Item:</label>
+        <select name="item" required>
+            <option value="">Select an item...</option>
+            <option value="Stroller" {% if donation.item == "Stroller" %}selected{% endif %}>🚼 Stroller</option>
+            <option value="Clothes" {% if donation.item == "Clothes" %}selected{% endif %}>👶 Clothes</option>
+            <option value="Crib" {% if donation.item == "Crib" %}selected{% endif %}>🛏️ Crib</option>
+            <option value="Bottles" {% if donation.item == "Bottles" %}selected{% endif %}>🍼 Bottles</option>
+            <option value="Toys" {% if donation.item == "Toys" %}selected{% endif %}>🧸 Toys</option>
+            <option value="Breast Pump" {% if donation.item == "Breast Pump" %}selected{% endif %}>🤱 Breast Pump</option>
+            <option value="Car Seat" {% if donation.item == "Car Seat" %}selected{% endif %}>🚗 Car Seat</option>
+            <option value="Bathtub" {% if donation.item == "Bathtub" %}selected{% endif %}>🛁 Bathtub</option>
+            <option value="Diapers" {% if donation.item == "Diapers" %}selected{% endif %}>👶 Diapers</option>
+            <option value="High Chair" {% if donation.item == "High Chair" %}selected{% endif %}>🪑 High Chair</option>
+            <option value="Baby Monitor" {% if donation.item == "Baby Monitor" %}selected{% endif %}>📱 Baby Monitor</option>
+            <option value="Other" {% if donation.item == "Other" %}selected{% endif %}>🎁 Other</option>
+        </select>
+
+        <label>Suitable for:</label>
+        <select name="gender" required>
+            <option value="">Select...</option>
+            <option value="girl" {% if donation.gender == "girl" %}selected{% endif %}>👧 Girl</option>
+            <option value="boy" {% if donation.gender == "boy" %}selected{% endif %}>👦 Boy</option>
+            <option value="both" {% if donation.gender == "both" %}selected{% endif %}>👶 Both (Unisex)</option>
+        </select>
+
+        <label>Condition:</label>
+        <select name="condition" required>
+            <option value="">Select condition...</option>
+            <option value="New" {% if donation.condition == "New" %}selected{% endif %}>✨ New (never used)</option>
+            <option value="Like New" {% if donation.condition == "Like New" %}selected{% endif %}>💫 Like New (barely used)</option>
+            <option value="Good" {% if donation.condition == "Good" %}selected{% endif %}>👍 Good (minor wear)</option>
+            <option value="Fair" {% if donation.condition == "Fair" %}selected{% endif %}>👌 Fair (visible wear but works well)</option>
+        </select>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4">{{ donation.description }}</textarea>
+
+        <label>Photo URL (optional):</label>
+        <input type="url" name="photo" value="{{ donation.photo }}">
+
+        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+            💾 Save Changes
+        </button>
+
+        <a href="/thankyou/{{ manage_code }}" style="display: block; text-align: center; margin-top: 15px; color: #888;">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}

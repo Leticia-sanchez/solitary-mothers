@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block title %}Donation Deleted{% endblock %}
+
+{% block content %}
+<div style="text-align: center; padding: 60px;">
+    <p style="font-size: 5em;">🗑️</p>
+    <h2>Donation Deleted</h2>
+    <p class="subtitle">Your donation has been removed from the listings.</p>
+
+    <div style="background: rgba(255,255,255,0.9); padding: 25px; border-radius: 20px; max-width: 500px; margin: 30px auto;">
+        <p style="color: #4A4A4A; line-height: 1.6;">
+            No problem! If you made a mistake or changed your mind, you can always donate again when you're ready.
+        </p>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="/donate" class="btn">🎁 Donate Another Item</a>
+        <a href="/" class="btn btn-secondary" style="margin-left: 10px;">🏠 Home</a>
+    </div>
+</div>
+{% endblock %}

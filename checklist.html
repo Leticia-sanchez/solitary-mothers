@@ -1,0 +1,224 @@
+{% extends "layout.html" %}
+
+{% block title %}Baby Checklist{% endblock %}
+
+{% block content %}
+<h2>📋 Baby Essentials Checklist</h2>
+<p class="subtitle">Everything you need to prepare for your baby's arrival!</p>
+
+<!-- Progress Bar -->
+<div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 15px; margin-bottom: 30px; text-align: center;">
+    <p style="color: #4A4A4A; margin-bottom: 10px;">Your Progress: <span id="progress-text">0 of 43 items</span></p>
+    <div style="background: #E0E0E0; border-radius: 10px; height: 20px; overflow: hidden;">
+        <div id="progress-bar" style="background: linear-gradient(135deg, #FFB6C6 0%, #B6E9C9 100%); height: 100%; width: 0%; transition: width 0.3s;"></div>
+    </div>
+</div>
+
+<!-- Download Button -->
+<div style="text-align: center; margin-bottom: 30px;">
+    <button onclick="downloadChecklist()" class="btn">📥 Download PDF Checklist</button>
+    <button onclick="clearAll()" class="btn btn-secondary" style="margin-left: 10px;">🔄 Clear All</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px;">
+
+    <div class="checklist-card">
+        <h3>👕 Clothing</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Bodysuits (8-10)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Sleepers/Pajamas (5-7)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Socks & Booties (5 pairs)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Hats (2-3)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Mittens (2-3 pairs)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Sweaters/Jackets (2-3)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Going-home outfit</li>
+        </ul>
+    </div>
+
+    <div class="checklist-card">
+        <h3>🛏️ Nursery</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Crib or Bassinet</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Firm mattress</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Fitted sheets (3-4)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Waterproof mattress pad</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby monitor</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Night light</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Dresser/Storage</li>
+        </ul>
+    </div>
+
+    <div class="checklist-card">
+        <h3>🍼 Feeding</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Bottles (4-6)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Bottle brush</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Burp cloths (10-12)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Bibs (8-10)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Breast pump (if breastfeeding)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Nursing pillow</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Formula (if needed)</li>
+        </ul>
+    </div>
+
+    <div class="checklist-card">
+        <h3>🛁 Bath Time</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby bathtub</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Hooded towels (3-4)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Washcloths (6-8)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby shampoo & wash</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby lotion</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Soft brush & comb</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Nail clippers</li>
+        </ul>
+    </div>
+
+    <div class="checklist-card">
+        <h3>🚗 On-the-Go</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Car seat</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Stroller</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Diaper bag</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby carrier/wrap</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Portable changing pad</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Stroller blanket</li>
+        </ul>
+    </div>
+
+    <div class="checklist-card">
+        <h3>🩹 Health & Safety</h3>
+        <ul>
+            <li><input type="checkbox" onchange="updateProgress()"> Diapers (newborn size)</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby wipes</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Diaper rash cream</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Thermometer</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Nasal aspirator</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Baby first aid kit</li>
+            <li><input type="checkbox" onchange="updateProgress()"> Pacifiers (2-3)</li>
+        </ul>
+    </div>
+
+</div>
+
+<div style="text-align: center; margin-top: 40px; padding: 30px; background: linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%); border-radius: 20px;">
+    <h3 style="color: #2E7D32;">💚 Need help getting these items?</h3>
+    <p style="color: #4A4A4A; margin: 15px 0;">Our community is here to help you!</p>
+    <a href="/request" class="btn">Request Help</a>
+    <a href="/items" class="btn btn-secondary" style="margin-left: 10px;">View Available Items</a>
+</div>
+
+<script>
+    // Load saved checkboxes
+    function loadProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const saved = JSON.parse(localStorage.getItem('checklist') || '[]');
+        checkboxes.forEach((cb, i) => {
+            cb.checked = saved[i] || false;
+        });
+        updateProgress();
+    }
+
+    // Save and update progress
+    function updateProgress() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const total = checkboxes.length;
+        const checked = Array.from(checkboxes).filter(cb => cb.checked).length;
+
+        // Save to localStorage
+        const states = Array.from(checkboxes).map(cb => cb.checked);
+        localStorage.setItem('checklist', JSON.stringify(states));
+
+        // Update progress bar
+        const percent = (checked / total) * 100;
+        document.getElementById('progress-bar').style.width = percent + '%';
+        document.getElementById('progress-text').textContent = checked + ' of ' + total + ' items';
+    }
+
+    // Clear all checkboxes
+    function clearAll() {
+        if (confirm('Are you sure you want to clear all checkboxes?')) {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            localStorage.removeItem('checklist');
+            updateProgress();
+        }
+    }
+
+    // Download as PDF
+    function downloadChecklist() {
+        const content = `
+BABY ESSENTIALS CHECKLIST
+Solidary Mothers
+========================
+
+👕 CLOTHING
+[ ] Bodysuits (8-10)
+[ ] Sleepers/Pajamas (5-7)
+[ ] Socks & Booties (5 pairs)
+[ ] Hats (2-3)
+[ ] Mittens (2-3 pairs)
+[ ] Sweaters/Jackets (2-3)
+[ ] Going-home outfit
+
+🛏️ NURSERY
+[ ] Crib or Bassinet
+[ ] Firm mattress
+[ ] Fitted sheets (3-4)
+[ ] Waterproof mattress pad
+[ ] Baby monitor
+[ ] Night light
+[ ] Dresser/Storage
+
+🍼 FEEDING
+[ ] Bottles (4-6)
+[ ] Bottle brush
+[ ] Burp cloths (10-12)
+[ ] Bibs (8-10)
+[ ] Breast pump (if breastfeeding)
+[ ] Nursing pillow
+[ ] Formula (if needed)
+
+🛁 BATH TIME
+[ ] Baby bathtub
+[ ] Hooded towels (3-4)
+[ ] Washcloths (6-8)
+[ ] Baby shampoo & wash
+[ ] Baby lotion
+[ ] Soft brush & comb
+[ ] Nail clippers
+
+🚗 ON-THE-GO
+[ ] Car seat
+[ ] Stroller
+[ ] Diaper bag
+[ ] Baby carrier/wrap
+[ ] Portable changing pad
+[ ] Stroller blanket
+
+🩹 HEALTH & SAFETY
+[ ] Diapers (newborn size)
+[ ] Baby wipes
+[ ] Diaper rash cream
+[ ] Thermometer
+[ ] Nasal aspirator
+[ ] Baby first aid kit
+[ ] Pacifiers (2-3)
+
+========================
+Need help? Visit Solidary Mothers!
+        `;
+
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'baby-checklist.txt';
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    // Load on page load
+    loadProgress();
+</script>
+{% endblock %}
