@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}Donate{% endblock %}
+
+{% block content %}
+<h2>🎁 Donate an Item</h2>
+<p class="subtitle">Your donation will help a mother prepare for her baby!</p>
+
+<div class="form-container">
+    <form method="POST">
+        <label>Your Name:</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Your Phone:</label>
+        <input type="tel" name="phone" placeholder="(000) 000-0000" required>
+
+        <label>Item to donate:</label>
+        <select name="item" required>
+            <option value="">Select...</option>
+            <option value="Clothes">Baby Clothes</option>
+            <option value="Stroller">Stroller</option>
+            <option value="Crib">Crib</option>
+            <option value="Bathtub">Baby Bathtub</option>
+            <option value="Bottles">Bottles</option>
+            <option value="Diapers">Diapers</option>
+            <option value="Toys">Toys</option>
+            <option value="Breast Pump">Breast Pump</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label>Condition:</label>
+        <select name="condition" required>
+            <option value="">Select...</option>
+            <option value="New">New</option>
+            <option value="Like New">Like New</option>
+            <option value="Gently Used">Gently Used</option>
+            <option value="Good">Good</option>
+        </select>
+
+        <label>Description:</label>
+        <textarea name="description" rows="4" placeholder="Describe the item: size, color, brand..." required></textarea>
+
+        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">💚 Submit Donation</button>
+    </form>
+</div>
+{% endblock %}

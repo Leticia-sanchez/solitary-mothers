@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+
+{% block title %}Available Items{% endblock %}
+
+{% block content %}
+<h2>📦 Available Items</h2>
+<p class="subtitle">Connecting families to share love and baby supplies</p>
+
+<!-- Filters -->
+<div class="filter-container">
+    <form method="GET" action="/items" style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; align-items: center; width: 100%;">
+        <select name="category" style="min-width: 150px;">
+            <option value="">All Items</option>
+            <option value="Stroller">🚼 Stroller</option>
+            <option value="Clothes">👶 Clothes</option>
+            <option value="Crib">🛏️ Crib</option>
+            <option value="Bottles">🍼 Bottles</option>
+            <option value="Toys">🧸 Toys</option>
+            <option value="Breast Pump">🤱 Breast Pump</option>
+            <option value="Car Seat">🚗 Car Seat</option>
+            <option value="Bathtub">🛁 Bathtub</option>
+            <option value="Diapers">👶 Diapers</option>
+            <option value="High Chair">🪑 High Chair</option>
+            <option value="Baby Monitor">📱 Baby Monitor</option>
+            <option value="Other">🎁 Other</option>
+        </select>
+
+        <select name="gender">
+            <option value="">All (Boy/Girl)</option>
+            <option value="girl">👧 Girl</option>
+            <option value="boy">👦 Boy</option>
+            <option value="both">👶 Unisex</option>
+        </select>
+
+        <input type="text" name="city" placeholder="City..." style="min-width: 150px;">
+
+        <select name="state">
+            <option value="">All States</option>
+            <option value="AL">AL</option>
+            <option value="AK">AK</option>
+            <option value="AZ">AZ</option>
+            <option value="AR">AR</option>
+            <option value="CA">CA</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="DE">DE</option>
+            <option value="FL">FL</option>
+            <option value="GA">GA</option>
+            <option value="HI">HI</option>
+            <option value="ID">ID</option>
+            <option value="IL">IL</option>
+            <option value="IN">IN</option>
+            <option value="IA">IA</option>
+            <option value="KS">KS</option>
+            <option value="KY">KY</option>
+            <option value="LA">LA</option>
+            <option value="ME">ME</option>
+            <option value="MD">MD</option>
+            <option value="MA">MA</option>
+            <option value="MI">MI</option>
+            <option value="MN">MN</option>
+            <option value="MS">MS</option>
+            <option value="MO">MO</option>
+            <option value="MT">MT</option>
+            <option value="NE">NE</option>
+            <option value="NV">NV</option>
+            <option value="NH">NH</option>
+            <option value="NJ">NJ</option>
+            <option value="NM">NM</option>
+            <option value="NY">NY</option>
+            <option value="NC">NC</option>
+            <option value="ND">ND</option>
+            <option value="OH">OH</option>
+            <option value="OK">OK</option>
+            <option value="OR">OR</option>
+            <option value="PA">PA</option>
+            <option value="RI">RI</option>
+            <option value="SC">SC</option>
+            <option value="SD">SD</option>
+            <option value="TN">TN</option>
+            <option value="TX">TX</option>
+            <option value="UT">UT</option>
+            <option value="VT">VT</option>
+            <option value="VA">VA</option>
+            <option value="WA">WA</option>
+            <option value="WV">WV</option>
+            <option value="WI">WI</option>
+            <option value="WY">WY</option>
+        </select>
+
+        <button type="submit" class="btn">🔍 Search</button>
+        <a href="/items" class="btn btn-secondary">Clear</a>
+    </form>
+</div>
+
+{% if donations %}
+<div class="cards-grid">
+    {% for donation in donations %}
+    <div class="card">
+        <span class="card-badge">{{ donation.condition }}</span>
+
+        {% if donation.photo %}
+        <div class="card-image" style="background-image: url('{{ donation.photo }}'); background-size: cover; background-position: center;">
+        </div>
+        {% else %}
+        <div class="card-image">
+            {% if donation.item == "Stroller" %}🚼
+            {% elif donation.item == "Clothes" %}👶
+            {% elif donation.item == "Crib" %}🛏️
+            {% elif donation.item == "Bottles" %}🍼
+            {% elif donation.item == "Toys" %}🧸
+            {% elif donation.item == "Breast Pump" %}🤱
+            {% elif donation.item == "Car Seat" %}🚗
+            {% elif donation.item == "Bathtub" %}🛁
+            {% else %}🎁
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <h3>{{ donation.item }}</h3>
+        <p style="color: #4A4A4A;">{{ donation.description }}</p>
+        <p style="color: #5D5D5D; margin-top: 10px;">
+            📍 {{ donation.city }}, {{ donation.state }}
+        </p>
+        <p style="margin-top: 5px;">
+            {% if donation.gender == "girl" %}
+                <span style="background: #FFD6E0; color: #7D5D6D; padding: 5px 12px; border-radius: 15px; font-size: 0.85em;">👧 Girl</span>
+            {% elif donation.gender == "boy" %}
+                <span style="background: #D6E5FF; color: #5D6D7D; padding: 5px 12px; border-radius: 15px; font-size: 0.85em;">👦 Boy</span>
+            {% else %}
+                <span style="background: #D6F5E3; color: #5D7D6D; padding: 5px 12px; border-radius: 15px; font-size: 0.85em;">👶 Unisex</span>
+            {% endif %}
+        </p>
+
+        <a href="sms:{{ donation.phone }}?body=Hi! I'm interested in your {{ donation.item }} ({{ donation.condition }}) in {{ donation.city }}, {{ donation.state }}. Is it still available?"
+           class="btn" style="display: block; text-align: center; margin-top: 15px;">
+            📱 I'm Interested
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; padding: 60px; background: white; border-radius: 25px;">
+    <p style="font-size: 4em;">🍼</p>
+    <p style="color: #4A4A4A; font-size: 1.2em;">No items available yet.</p>
+    <p style="margin-top: 20px;">Be the first to <a href="/donate" style="color: #7D6B7D; font-weight: 600;">make a donation</a>!</p>
+</div>
+{% endif %}
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="/donate" class="btn">🎁 Donate an Item</a>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div style="text-align: center; position: relative;">
+
+    <!-- Floating decorations -->
+    <div style="position: absolute; top: -20px; left: 10%; font-size: 3em; animation: float 4s ease-in-out infinite;">🍼</div>
+    <div style="position: absolute; top: 50px; right: 10%; font-size: 2.5em; animation: floatReverse 5s ease-in-out infinite;">🧸</div>
+    <div style="position: absolute; top: 150px; left: 5%; font-size: 2em; animation: float 6s ease-in-out infinite;">👶</div>
+    <div style="position: absolute; top: 100px; right: 5%; font-size: 2.5em; animation: floatReverse 4s ease-in-out infinite;">🎀</div>
+
+    <h2 style="font-size: 3em; margin-bottom: 20px;">
+        🌿 Solidary Mothers 🌿
+    </h2>
+    <p class="subtitle" style="font-size: 1.3em;">Connecting families to share love and baby supplies</p>
+
+    <!-- Main cards -->
+    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 50px 0;">
+
+        <a href="/donate" style="text-decoration: none;">
+            <div class="feature-card" style="background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); padding: 40px; border-radius: 30px; width: 280px; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                <div style="font-size: 4em; margin-bottom: 20px; animation: pulse 2s ease-in-out infinite;">🎁</div>
+                <h3 style="color: #2E7D32; font-size: 1.5em; margin-bottom: 10px;">Donate</h3>
+                <p style="color: #555;">Share items your baby no longer needs with families who need them</p>
+            </div>
+        </a>
+
+        <a href="/items" style="text-decoration: none;">
+            <div class="feature-card" style="background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%); padding: 40px; border-radius: 30px; width: 280px; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                <div style="font-size: 4em; margin-bottom: 20px; animation: pulse 2s ease-in-out infinite 0.3s;">💚</div>
+                <h3 style="color: #F9A825; font-size: 1.5em; margin-bottom: 10px;">Connect</h3>
+                <p style="color: #555;">We match donors with mothers who are preparing for their babies</p>
+            </div>
+        </a>
+
+        <a href="/request" style="text-decoration: none;">
+            <div class="feature-card" style="background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD9 100%); padding: 40px; border-radius: 30px; width: 280px; transition: all 0.4s; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px) scale(1.05)'" onmouseout="this.style.transform='translateY(0) scale(1)'">
+                <div style="font-size: 4em; margin-bottom: 20px; animation: pulse 2s ease-in-out infinite 0.6s;">👶</div>
+                <h3 style="color: #C2185B; font-size: 1.5em; margin-bottom: 10px;">Receive</h3>
+                <p style="color: #555;">Families receive quality items to welcome their little ones</p>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Stats section -->
+    <div style="background: white; padding: 40px; border-radius: 30px; margin: 40px 0; box-shadow: 0 10px 40px rgba(0,0,0,0.1);">
+        <h3 style="color: #2E7D32; margin-bottom: 30px; font-size: 1.8em;">✨ Together We Make a Difference ✨</h3>
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;">
+            <div style="text-align: center;">
+                <div class="stats-number">{{ total_available }}</div>
+                <p style="color: #4A4A4A;">Items Available</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="stats-number">{{ total_donations }}</div>
+                <p style="color: #4A4A4A;">Families Helped</p>
+            </div>
+            <div style="text-align: center;">
+                <div class="stats-number">💕</div>
+                <p style="color: #4A4A4A;">Spreading Love</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div style="margin-top: 40px;">
+        <a href="/donate" class="btn" style="margin: 10px; font-size: 1.2em; padding: 18px 40px;">🎁 Donate Now</a>
+        <a href="/request" class="btn btn-secondary" style="margin: 10px; font-size: 1.2em; padding: 18px 40px;">💚 Request Help</a>
+    </div>
+
+    <div style="margin-top: 30px;">
+        <a href="/items" style="color: #2E7D32; font-weight: 700; font-size: 1.1em; text-decoration: none;">
+            View Available Items →
+        </a>
+    </div>
+
+</div>
+{% endblock %}

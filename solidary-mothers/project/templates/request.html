@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}Request Help{% endblock %}
+
+{% block content %}
+<h2>💚 Request Help</h2>
+<p class="subtitle">Tell us what you need. We'll help you prepare for your baby!</p>
+
+<div class="form-container">
+    <form method="POST">
+        <label>Your Name:</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
+
+        <label>Your Phone:</label>
+        <input type="tel" name="phone" placeholder="(000) 000-0000" required>
+
+        <label>What do you need?</label>
+        <textarea name="needs" rows="5" placeholder="Tell us what items you need for your baby..." required></textarea>
+
+        <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">💚 Submit Request</button>
+    </form>
+
+    <div style="background: #E8F5E9; padding: 20px; border-radius: 15px; margin-top: 30px; text-align: center;">
+        <p style="color: #2E7D32;">
+            <strong>🤝 Don't worry!</strong><br>
+            Your request will be reviewed with care and love.
+        </p>
+    </div>
+</div>
+{% endblock %}
